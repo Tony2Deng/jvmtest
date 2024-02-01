@@ -21,9 +21,12 @@ public class JavaClassExec {
         return HackSystem.getBufferString();
     }
 
+    /*
+      用于本地测试
     public static void main(String[] args) throws IOException {
         FileInputStream fileInputStream = new FileInputStream("out/production/testwithoutlib/com/tony/test/classloader/remote_exec/TestRemoteExec.class");
         String execute = execute(fileInputStream.readAllBytes());
         System.out.println(execute);
     }
+    */
 }
