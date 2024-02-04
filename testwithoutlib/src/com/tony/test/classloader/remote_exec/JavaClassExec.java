@@ -1,7 +1,5 @@
 package com.tony.test.classloader.remote_exec;
 
-import java.io.FileInputStream;
-import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
@@ -9,7 +7,8 @@ public class JavaClassExec {
     public static String execute(byte[] classBytes) {
        HackSystem.clearBuffer();
         ClassModifier classModifier = new ClassModifier(classBytes);
-        byte[] modifyBytes = classModifier.modifyUtf8Constant("java/lang/System", "com/tony/test/classloader/remote_exec/HackSystem");
+        String name = HackSystem.class.getName().replace(".", "/");
+        byte[] modifyBytes = classModifier.modifyUtf8Constant("java/lang/System", name);
         HotSwapClassLoader hotSwapClassLoader = new HotSwapClassLoader();
         Class aClass = hotSwapClassLoader.loadByte(modifyBytes);
         try {
